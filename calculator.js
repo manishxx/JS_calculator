@@ -40,7 +40,7 @@ function handleSymbol(value) {
             if (previousOperator === null) {
                 return;
             }
-            flushOperation(parseInt(buffer));
+            mathOperation(parseInt(buffer));
             previousOperator = null;
             buffer = " " + total;
             total = 0;
@@ -67,9 +67,26 @@ function handleMath(value) {
         total = intBuffer;
     } else flushOperation(intBuffer);
     previousOperator = value;
-    buffer = 0
+    buffer = 0;
+
 }
 
 function rerender() {
     screen.innerText = buffer;
+}
+function mathOperation(intBuffer){
+    if (previousOperator=== '+') {
+      total+= intBuffer;
+     
+    }
+    else if (previousOperator==='-'){
+        total-=intBuffer;
+        
+    }
+    else if (previousOperator==='×'){
+        total*=intBuffer;
+    }
+    else if(previousOperator==='÷'){
+        total/=intBuffer;
+    }
 }
